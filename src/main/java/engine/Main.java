@@ -1,22 +1,23 @@
 package main.java.engine;
 
-import java.util.HashMap;
-import main.java.structure.Room;
+import java.util.Scanner;
 
 public class Main {
-
-  public Room currentRoom;
+  private static boolean running = true;
   public static void main(String[] args) {
-    Main main = new Main();
-    main.currentRoom = new Room("room 1");
-    HashMap<String, Room> temp = new HashMap<>();
-    temp.put("1", main.currentRoom);
-    main.currentRoom.addExits("1", new Room("Room 2", temp));
+    Game game = new Game();
+    Scanner input = new Scanner(System.in);
+    String line;
 
-    System.out.println(main.currentRoom.enterRoom());
-    main.currentRoom = main.currentRoom.exitTo("1");
-    System.out.println(main.currentRoom.enterRoom());
-    main.currentRoom = main.currentRoom.exitTo("1");
-    System.out.println(main.currentRoom.enterRoom());
+    while (running) {
+      line = input.nextLine();
+      System.out.println(" >> " + line);
+      if (line.equals("stop"))
+        stopGame();
+      game.parseInstructions(line);
+    }
+  }
+  public static void stopGame(){
+    running = false;
   }
 }
