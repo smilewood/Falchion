@@ -8,16 +8,22 @@ public class Main {
     Game game = new Game();
     Scanner input = new Scanner(System.in);
     String line;
+    String instruction;
 
     while (running) {
-      line = input.nextLine();
-      System.out.println(" >> " + line);
-      if (line.equals("stop"))
-        stopGame();
-      game.parseInstructions(line);
+      System.out.print(" >> ");
+      instruction = input.next();
+      line = input.nextLine().trim();
+      System.out.println("Command: '" + instruction + "' \nTarget: '" + line + "'");
+      game.parseInstructions(instruction, line);
     }
   }
+
+  /**
+   * Ends the game loop after the current cycle.
+   */
   public static void stopGame(){
     running = false;
+    System.out.println("Goodbye.");
   }
 }

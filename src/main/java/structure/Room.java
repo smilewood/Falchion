@@ -1,29 +1,24 @@
 package main.java.structure;
 
-import java.util.HashMap;
 
-public class Room {
-  private String roomText;
-  private HashMap<String, Room> exits;
+import java.util.HashSet;
 
-  public Room (String enterText){
-    this.roomText = enterText;
-    this.exits = new HashMap<>();
-  }
-  public Room (String enterText, HashMap<String, Room> exits){
-    this(enterText);
-    this.exits = exits;
+public class Room extends Intractable{
+
+
+  public Room (String name, String enterText){
+    super(name, enterText);
   }
 
-  public void addExits(String exit, Room exitTo){
-    this.exits.put(exit, exitTo);
-  }
+  @Override
+  public Exit exitTo(String target) {
+    Exit temp = super.exitTo(target);
+    if (temp.equals(Exit.noExit(this))) {
+      System.out.println("'" + target + "' is not an exit to " + this.name);
+    }else {
+      System.out.println("Exiting through " + temp.getName());
+    }
+    return temp;
 
-  public String enterRoom(){
-    return roomText;
-  }
-
-  public Room exitTo(String room){
-    return this.exits.get(room);
   }
 }
