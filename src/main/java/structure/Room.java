@@ -1,9 +1,9 @@
 package main.java.structure;
 
 
-import java.util.HashSet;
 
 public class Room extends Intractable{
+
 
 
   public Room (String name, String enterText){
@@ -21,4 +21,6 @@ public class Room extends Intractable{
     return temp;
 
   }
+
+
 }
